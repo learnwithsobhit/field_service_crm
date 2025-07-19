@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'payment_processing_screen.dart';
 
 class InvoiceDetailScreen extends StatefulWidget {
   final Map<String, dynamic> invoice;
@@ -908,24 +909,6 @@ class CreateInvoiceScreen extends StatelessWidget {
       ),
       body: const Center(
         child: Text('Create/Edit Invoice Screen - Implementation coming next!'),
-      ),
-    );
-  }
-}
-
-class PaymentProcessingScreen extends StatelessWidget {
-  final Map<String, dynamic> invoice;
-
-  const PaymentProcessingScreen({super.key, required this.invoice});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Pay ${invoice['id']}'),
-      ),
-      body: const Center(
-        child: Text('Payment Processing Screen - Implementation coming next!'),
       ),
     );
   }

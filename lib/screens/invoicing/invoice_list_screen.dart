@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'invoice_detail_screen.dart';
+import 'payment_processing_screen.dart';
+import '../reports/financial_reports_screen.dart';
 
 class InvoiceListScreen extends StatefulWidget {
   const InvoiceListScreen({super.key});
@@ -755,19 +757,4 @@ class _InvoiceListScreenState extends State<InvoiceListScreen> with SingleTicker
   }
 }
 
-// Placeholder screens that will be implemented next
-class FinancialReportsScreen extends StatelessWidget {
-  const FinancialReportsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Financial Reports'),
-      ),
-      body: const Center(
-        child: Text('Financial Reports Screen - Implementation coming next!'),
-      ),
-    );
-  }
-} 
+// FinancialReportsScreen is now implemented in a separate file 

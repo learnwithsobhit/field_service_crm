@@ -23,6 +23,10 @@ import 'screens/emergency/emergency_response_screen.dart';
 import 'screens/analytics/analytics_dashboard_screen.dart';
 import 'screens/splash_screen.dart';
 import 'screens/icon_preview_screen.dart';
+import 'screens/dashboard/dashboard_widgets_screen.dart';
+import 'screens/work_orders/work_order_management_screen.dart';
+import 'screens/service_history/service_history_screen.dart';
+import 'screens/quality/quality_assurance_screen.dart';
 import 'widgets/app_logo.dart';
 
 void main() {
@@ -55,6 +59,10 @@ class FieldServiceCRMApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignupScreen(),
         '/icon_preview': (context) => const IconPreviewScreen(),
+        '/dashboard_widgets': (context) => const DashboardWidgetsScreen(),
+        '/work_orders': (context) => const WorkOrderManagementScreen(),
+        '/service_history': (context) => const ServiceHistoryScreen(),
+        '/quality_assurance': (context) => const QualityAssuranceScreen(),
       },
     );
   }
@@ -878,6 +886,92 @@ class DashboardScreen extends StatelessWidget {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const AnalyticsDashboardScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              
+              // Advanced Features Section
+              Text(
+                'Advanced Features',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xFF111827),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Work Orders',
+                      'Manage service\nrequests',
+                      Icons.assignment,
+                      const Color(0xFF6366F1),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const WorkOrderManagementScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Service History',
+                      'Track maintenance\nlogs',
+                      Icons.history,
+                      const Color(0xFF059669),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const ServiceHistoryScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Quality Assurance',
+                      'Inspection &\nstandards',
+                      Icons.verified,
+                      const Color(0xFFDC2626),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const QualityAssuranceScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Dashboard Widgets',
+                      'Customize your\nview',
+                      Icons.dashboard_customize,
+                      const Color(0xFF7C3AED),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const DashboardWidgetsScreen(),
                           ),
                         );
                       },

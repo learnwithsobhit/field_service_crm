@@ -17,6 +17,10 @@ import 'screens/scheduler/team_scheduler_screen.dart';
 import 'screens/customers/customer_management_screen.dart';
 import 'screens/equipment/equipment_management_screen.dart';
 import 'screens/tracking/time_tracking_screen.dart';
+import 'screens/expenses/expense_tracking_screen.dart';
+import 'screens/documents/document_management_screen.dart';
+import 'screens/emergency/emergency_response_screen.dart';
+import 'screens/analytics/analytics_dashboard_screen.dart';
 
 void main() {
   runApp(
@@ -805,6 +809,82 @@ class DashboardScreen extends StatelessWidget {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const TeamChatScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Expenses',
+                      'Track costs &\napprovals',
+                      Icons.receipt_long,
+                      const Color(0xFF8B5CF6),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const ExpenseTrackingScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Documents',
+                      'Manage files &\ncontracts',
+                      Icons.folder_open,
+                      const Color(0xFFF97316),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const DocumentManagementScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Emergency',
+                      'Response &\nalerts',
+                      Icons.emergency,
+                      const Color(0xFFEF4444),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const EmergencyResponseScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Analytics',
+                      'Business &\ninsights',
+                      Icons.analytics,
+                      const Color(0xFF10B981),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const AnalyticsDashboardScreen(),
                           ),
                         );
                       },

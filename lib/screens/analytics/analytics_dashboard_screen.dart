@@ -169,7 +169,7 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
 
   Widget _buildOverviewTab() {
     final totalRevenue = _revenueData.fold<double>(0, (sum, data) => sum + data['revenue']);
-    final totalJobs = _revenueData.fold<int>(0, (sum, data) => sum + data['jobs']);
+    final totalJobs = _revenueData.fold<double>(0, (sum, data) => sum + data['jobs']);
     final avgRating = _technicianPerformance.fold<double>(0, (sum, tech) => sum + tech['avgRating']) / _technicianPerformance.length;
     final customerSatisfaction = 94.5;
 
@@ -552,14 +552,14 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
               width: 16,
               height: 16,
               decoration: BoxDecoration(
-                color: _getServiceTypeColor(service['type']),
+                color: _getServiceTypeColor(service['type'] as String),
                 shape: BoxShape.circle,
               ),
             ),
-            title: Text(service['type']),
-            subtitle: Text('\$${NumberFormat('#,###').format(service['revenue'])}'),
+            title: Text(service['type'] as String),
+            subtitle: Text('\$${NumberFormat('#,###').format(service['revenue'] as int)}'),
             trailing: Text(
-              '${service['percentage'].toStringAsFixed(1)}%',
+              '${(service['percentage'] as double).toStringAsFixed(1)}%',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           )).toList(),
@@ -689,9 +689,9 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
   }
 
   Widget _buildPerformanceMetrics() {
-    final avgJobsPerTech = _technicianPerformance.fold<int>(0, (sum, tech) => sum + tech['jobsCompleted']) / _technicianPerformance.length;
+    final avgJobsPerTech = _technicianPerformance.fold<double>(0, (sum, tech) => sum + tech['jobsCompleted']) / _technicianPerformance.length;
     final avgRating = _technicianPerformance.fold<double>(0, (sum, tech) => sum + tech['avgRating']) / _technicianPerformance.length;
-    final avgEfficiency = _technicianPerformance.fold<int>(0, (sum, tech) => sum + tech['efficiency']) / _technicianPerformance.length;
+    final avgEfficiency = _technicianPerformance.fold<double>(0, (sum, tech) => sum + tech['efficiency']) / _technicianPerformance.length;
 
     return Row(
       children: [

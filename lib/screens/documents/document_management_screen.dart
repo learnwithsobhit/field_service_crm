@@ -131,7 +131,7 @@ class _DocumentManagementScreenState extends State<DocumentManagementScreen>
     {'id': 'contract', 'name': 'Contracts', 'icon': Icons.description, 'color': Colors.blue},
     {'id': 'report', 'name': 'Reports', 'icon': Icons.assessment, 'color': Colors.green},
     {'id': 'photo', 'name': 'Photos', 'icon': Icons.photo, 'color': Colors.orange},
-    {'id': 'template', 'name': 'Templates', 'icon': Icons.template, 'color': Colors.purple},
+    {'id': 'template', 'name': 'Templates', 'icon': Icons.description, 'color': Colors.purple},
     {'id': 'manual', 'name': 'Manuals', 'icon': Icons.menu_book, 'color': Colors.red},
     {'id': 'warranty', 'name': 'Warranties', 'icon': Icons.security, 'color': Colors.teal},
     {'id': 'invoice', 'name': 'Invoices', 'icon': Icons.receipt, 'color': Colors.indigo},

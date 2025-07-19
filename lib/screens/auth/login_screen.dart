@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../main.dart';
+import '../../widgets/brand_header.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -109,25 +110,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildHeader() {
     return Column(
       children: [
-        Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            color: const Color(0xFF14B8A6),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF14B8A6).withOpacity(0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-              ),
-            ],
-          ),
-          child: const Icon(
-            Icons.build_circle,
-            size: 40,
-            color: Colors.white,
-          ),
+        const BrandHeader(
+          logoSize: 100,
+          showTagline: false,
         ),
         const SizedBox(height: 16),
         Text(

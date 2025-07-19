@@ -21,6 +21,9 @@ import 'screens/expenses/expense_tracking_screen.dart';
 import 'screens/documents/document_management_screen.dart';
 import 'screens/emergency/emergency_response_screen.dart';
 import 'screens/analytics/analytics_dashboard_screen.dart';
+import 'screens/splash_screen.dart';
+import 'screens/icon_preview_screen.dart';
+import 'widgets/app_logo.dart';
 
 void main() {
   runApp(
@@ -44,7 +47,15 @@ class FieldServiceCRMApp extends StatelessWidget {
           seedColor: const Color(0xFF14B8A6), // Teal 500
         ),
       ),
-      home: const WelcomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/welcome': (context) => const WelcomeScreen(),
+        '/dashboard': (context) => const MainNavigationScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignupScreen(),
+        '/icon_preview': (context) => const IconPreviewScreen(),
+      },
     );
   }
 }
@@ -65,20 +76,8 @@ class WelcomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // App Logo/Icon
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF14B8A6),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        Icons.construction,
-                        size: 60,
-                        color: Colors.white,
-                      ),
-                    ),
+                    // App Logo
+                    const AppLogo(size: 140),
                     const SizedBox(height: 32),
                     
                     // App Title
@@ -140,11 +139,7 @@ class WelcomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
+                        Navigator.of(context).pushNamed('/login');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF14B8A6),
@@ -162,11 +157,7 @@ class WelcomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SignupScreen(),
-                          ),
-                        );
+                        Navigator.of(context).pushNamed('/signup');
                       },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: const Color(0xFF14B8A6),
@@ -182,11 +173,7 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const MainNavigationScreen(),
-                        ),
-                      );
+                      Navigator.of(context).pushReplacementNamed('/dashboard');
                     },
                     child: const Text('Continue as Demo User'),
                   ),
@@ -322,16 +309,22 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
           children: [
-            Text(
-              'Good Morning',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
-            ),
-            Text(
-              'Sam Rodriguez',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            const AppLogoCompact(size: 28),
+            const SizedBox(width: 12),
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Good Morning',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+                ),
+                Text(
+                  'Sam Rodriguez',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ],
         ),

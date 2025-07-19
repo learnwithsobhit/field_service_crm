@@ -345,22 +345,19 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen>
           const SizedBox(height: 24),
           
           // Category Summary Cards
-          GridView.builder(
+          ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.5,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-            ),
             itemCount: _categories.length,
             itemBuilder: (context, index) {
               final category = _categories[index];
               final total = categoryTotals[category['id']] ?? 0.0;
               final count = _expenses.where((e) => e['category'] == category['id']).length;
               
-              return _buildCategoryCard(category, total, count);
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: _buildCategoryCard(category, total, count),
+              );
             },
           ),
           const SizedBox(height: 24),
@@ -431,47 +428,56 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen>
 
   Widget _buildCategoryCard(Map<String, dynamic> category, double total, int count) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      child: Container(
+        height: 50,
+        padding: const EdgeInsets.all(8),
+        child: Row(
           children: [
             Container(
-              width: 48,
-              height: 48,
+              width: 20,
+              height: 20,
               decoration: BoxDecoration(
                 color: category['color'].withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(3),
               ),
               child: Icon(
                 category['icon'],
                 color: category['color'],
-                size: 24,
+                size: 10,
               ),
             ),
-            const SizedBox(height: 12),
-            Text(
-              category['name'],
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+            const SizedBox(width: 6),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    category['name'],
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    '\$${total.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              '\$${total.toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
-                fontSize: 18,
-              ),
             ),
             Text(
-              '$count expenses',
+              '$count',
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 9,
                 color: Colors.grey[600],
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],

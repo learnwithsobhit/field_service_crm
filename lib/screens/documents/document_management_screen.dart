@@ -396,22 +396,19 @@ class _DocumentManagementScreenState extends State<DocumentManagementScreen>
           const SizedBox(height: 24),
           
           // Category Grid
-          GridView.builder(
+          ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-            ),
             itemCount: _documentTypes.length,
             itemBuilder: (context, index) {
               final type = _documentTypes[index];
               final count = categoryCounts[type['id']] ?? 0;
               final size = categorySizes[type['id']] ?? 0.0;
               
-              return _buildCategoryCard(type, count, size);
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: _buildCategoryCard(type, count, size),
+              );
             },
           ),
           const SizedBox(height: 24),
@@ -482,47 +479,56 @@ class _DocumentManagementScreenState extends State<DocumentManagementScreen>
 
   Widget _buildCategoryCard(Map<String, dynamic> type, int count, double size) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      child: Container(
+        height: 50,
+        padding: const EdgeInsets.all(8),
+        child: Row(
           children: [
             Container(
-              width: 48,
-              height: 48,
+              width: 20,
+              height: 20,
               decoration: BoxDecoration(
                 color: type['color'].withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(3),
               ),
               child: Icon(
                 type['icon'],
                 color: type['color'],
-                size: 24,
+                size: 10,
               ),
             ),
-            const SizedBox(height: 12),
-            Text(
-              type['name'],
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+            const SizedBox(width: 6),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    type['name'],
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    '$count documents',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              '$count documents',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
-                fontSize: 18,
-              ),
             ),
             Text(
-              '${size.toStringAsFixed(1)} MB',
+              '${size.toStringAsFixed(1)}MB',
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 9,
                 color: Colors.grey[600],
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],

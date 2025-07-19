@@ -280,34 +280,46 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: _revenueData.map((data) => Text(data['month'])).toList(),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: _revenueData.map((data) {
-                final height = (data['revenue'] / 70000 * 100).clamp(10.0, 100.0);
-                return Container(
-                  width: 40,
-                  height: height,
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: _revenueData.map((data) => Text('\$${(data['revenue'] / 1000).toStringAsFixed(0)}k')).toList(),
-            ),
-          ],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: _revenueData.map((data) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(data['month']),
+                )).toList(),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: _revenueData.map((data) {
+                  final height = (data['revenue'] / 70000 * 100).clamp(10.0, 100.0);
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Container(
+                      width: 40,
+                      height: height,
+                      decoration: BoxDecoration(
+                        color: Colors.blue.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: _revenueData.map((data) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text('\$${(data['revenue'] / 1000).toStringAsFixed(0)}k'),
+                )).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -319,9 +331,9 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1.5,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
+        childAspectRatio: 2.0,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
       ),
       itemCount: _customerMetrics.length,
       itemBuilder: (context, index) {
@@ -333,41 +345,46 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
 
   Widget _buildCustomerMetricCard(Map<String, dynamic> metric) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
+      child: Container(
+        height: 60,
+        padding: const EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  metric['category'],
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                Expanded(
+                  child: Text(
+                    metric['category'],
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                 ),
                 Icon(
                   metric['trend'] == 'up' ? Icons.trending_up : Icons.trending_down,
                   color: metric['trend'] == 'up' ? Colors.green : Colors.red,
-                  size: 20,
+                  size: 14,
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             Text(
               metric['count'].toString(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: metric['color'],
-                fontSize: 24,
+                fontSize: 18,
               ),
             ),
             Text(
               '${metric['percentage'].toStringAsFixed(1)}%',
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 9,
                 color: Colors.grey[600],
               ),
             ),
@@ -501,11 +518,13 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: _revenueData.map((data) => Column(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: _revenueData.map((data) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
                 children: [
                   Text(
                     data['month'],
@@ -526,9 +545,9 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
                     style: const TextStyle(fontSize: 12),
                   ),
                 ],
-              )).toList(),
-            ),
-          ],
+              ),
+            )).toList(),
+          ),
         ),
       ),
     );
@@ -807,15 +826,24 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: _revenueData.map((data) => Column(
-                children: [
-                  Text(data['month']),
-                  const SizedBox(height: 8),
-                  Container(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: _revenueData.map((data) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(data['month']),
+                )).toList(),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: _revenueData.map((data) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Container(
                     width: 40,
                     height: (data['jobs'] / 70 * 100).clamp(10.0, 100.0),
                     decoration: BoxDecoration(
@@ -823,20 +851,26 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen>
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
+                )).toList(),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: _revenueData.map((data) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
                     data['jobs'].toString(),
                     style: const TextStyle(fontSize: 12),
                   ),
-                ],
-              )).toList(),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Jobs Completed per Month',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
+                )).toList(),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Jobs Completed per Month',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -14,6 +14,9 @@ import 'screens/settings/settings_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/scheduler/team_scheduler_screen.dart';
+import 'screens/customers/customer_management_screen.dart';
+import 'screens/equipment/equipment_management_screen.dart';
+import 'screens/tracking/time_tracking_screen.dart';
 
 void main() {
   runApp(
@@ -375,7 +378,13 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
           ),
           const SizedBox(width: 8),
         ],
@@ -720,6 +729,82 @@ class DashboardScreen extends StatelessWidget {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const SettingsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Customers',
+                      'Manage client\ninformation',
+                      Icons.people,
+                      const Color(0xFFF59E0B),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const CustomerManagementScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Equipment',
+                      'Track tools &\nmaintenance',
+                      Icons.build,
+                      const Color(0xFFEC4899),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const EquipmentManagementScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Time Tracking',
+                      'Clock in/out &\ntrack hours',
+                      Icons.timer,
+                      const Color(0xFF06B6D4),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const TimeTrackingScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildQuickActionCard(
+                      context,
+                      'Team Chat',
+                      'Communication &\ncollaboration',
+                      Icons.chat,
+                      const Color(0xFF84CC16),
+                      () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const TeamChatScreen(),
                           ),
                         );
                       },

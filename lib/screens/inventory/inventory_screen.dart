@@ -253,6 +253,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'inventory_fab',
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Add inventory item coming soon!')),

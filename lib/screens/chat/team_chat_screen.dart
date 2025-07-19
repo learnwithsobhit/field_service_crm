@@ -274,6 +274,7 @@ class _TeamChatScreenState extends State<TeamChatScreen> with SingleTickerProvid
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'chat_fab',
         onPressed: _showEmergencyBroadcast,
         backgroundColor: Colors.red,
         child: const Icon(Icons.emergency, color: Colors.white),

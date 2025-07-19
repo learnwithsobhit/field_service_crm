@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../main.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -433,7 +435,11 @@ class _LoginScreenState extends State<LoginScreen> {
       // Demo credentials
       if (email == 'demo@fieldservice.com' && password == 'password') {
         if (mounted) {
-          Navigator.of(context).pushReplacementNamed('/dashboard');
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const MainNavigationScreen(),
+            ),
+          );
         }
       } else {
         throw Exception('Invalid credentials');

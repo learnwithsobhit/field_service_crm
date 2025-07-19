@@ -279,6 +279,7 @@ class _JobListScreenState extends State<JobListScreen> with SingleTickerProvider
               ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'job_list_fab',
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(

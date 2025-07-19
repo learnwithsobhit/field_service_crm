@@ -262,6 +262,7 @@ class _InvoiceListScreenState extends State<InvoiceListScreen> with SingleTicker
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'invoice_list_fab',
         onPressed: _createNewInvoice,
         backgroundColor: const Color(0xFF14B8A6),
         child: const Icon(Icons.add, color: Colors.white),

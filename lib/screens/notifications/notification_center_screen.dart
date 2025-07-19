@@ -270,6 +270,7 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'notification_fab',
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(

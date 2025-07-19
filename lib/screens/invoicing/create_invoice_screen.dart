@@ -437,7 +437,7 @@ class _CreateInvoiceScreenState extends State<CreateInvoiceScreen> with TickerPr
               const SizedBox(width: 12),
               ElevatedButton.icon(
                 onPressed: _addFromTemplate,
-                icon: const Icon(Icons.template_add),
+                icon: const Icon(Icons.add),
                 label: const Text('Template'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey[200],

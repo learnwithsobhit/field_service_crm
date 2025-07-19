@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../main.dart';
+import 'login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -600,13 +602,17 @@ class _SignupScreenState extends State<SignupScreen> {
               ],
             ),
             actions: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).pushReplacementNamed('/login');
-                },
-                child: const Text('Continue to Login'),
-              ),
+                              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text('Continue to Login'),
+                ),
             ],
           ),
         );
@@ -628,6 +634,10 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _navigateToLogin() {
-    Navigator.of(context).pushReplacementNamed('/login');
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
   }
 } 

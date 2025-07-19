@@ -122,7 +122,7 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
             const SizedBox(height: 12),
             _buildSummaryRow('Invoice Number:', widget.invoice['id']),
             _buildSummaryRow('Client:', widget.invoice['clientName']),
-            _buildSummaryRow('Due Date:', widget.invoice['dueDate']),
+            _buildSummaryRow('Due Date:', _formatDate(widget.invoice['dueDate'])),
             const Divider(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -689,5 +689,10 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
         ],
       ),
     );
+  }
+
+  String _formatDate(DateTime? date) {
+    if (date == null) return 'Not set';
+    return '${date.day}/${date.month}/${date.year}';
   }
 } 

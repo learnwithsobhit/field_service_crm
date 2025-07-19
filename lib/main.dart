@@ -13,6 +13,7 @@ import 'screens/reports/reports_screen.dart';
 import 'screens/settings/settings_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/signup_screen.dart';
+import 'screens/scheduler/team_scheduler_screen.dart';
 
 void main() {
   runApp(
@@ -132,9 +133,9 @@ class WelcomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const MainNavigationScreen(),
+                            builder: (context) => const LoginScreen(),
                           ),
                         );
                       },
@@ -146,7 +147,7 @@ class WelcomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text('GET STARTED'),
+                      child: const Text('SIGN IN'),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -156,7 +157,7 @@ class WelcomeScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
+                            builder: (context) => const SignupScreen(),
                           ),
                         );
                       },
@@ -292,6 +293,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ],
       ),
       floatingActionButton: _currentIndex == 1 ? FloatingActionButton(
+        heroTag: 'main_nav_fab',
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -425,8 +427,10 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Advanced scheduler coming soon!')),
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const TeamSchedulerScreen(),
+                          ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
